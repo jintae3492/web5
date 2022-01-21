@@ -1,0 +1,101 @@
+options = Options()
+
+전체 화면으로 
+options.add_argument('--start-fullscreen')
+driver = webdriver.Chrome(options=options)
+
+
+def alert_accept():
+       driver.switch_to.alert.accept()
+
+def chromestart(start_url):
+    driver.get(start_url)
+
+def start():
+    chromestart(‘하이버 ‘사이트 로그인)
+    driver.find_element_by_name('member_id').send_keys(‘김진태김진태)
+    driver.find_element_by_name('member_passwd').send_keys(‘김진태김진태 하이버 비번?)’)
+    driver.find_element_by_class_name('loginBtn').click()
+
+
+def pickin(pr):
+    변수 pr을 통해 받은 상품 주소로 이동
+    driver.get(pr)
+    driver.implicitly_wait(10)
+    각 상품페이지에 있는 장바구니 버튼의 클래스 이름을 찾아 클릭
+    driver.find_element_by_class_name('btn_15_f2(상품번호 하이버 어드민)’).click()
+
+def full_set(color):
+    pr= [
+        "http://상품1 주소(하이버 내부 상품번호 URL)”,          
+        "http://상품2 주소(브랜드)”,
+        "http://상품3 주소(쇼핑몰)”,
+        "http://상품4 주소(럭셔리)”,
+        "http://상품5 주소(스포츠)”,
+        "http://상품6 주소(디지털)”,
+        "http://상품7 주소(라이프)”,
+        "http://상품8 주소(아우터)”,
+        "http://상품9 주소(상의)”,
+        "http://상품10 주소(바지)”,
+    ]
+
+    for i in range(len(pr)):
+        driver.implicitly_wait(10)
+        pickin(pr[i])
+
+ H22-1차 하이버 요건 (장바구니 관련) 코드 연습
+
+    하이버 상의 검정색 선택시
+    if color == "b" or color == "Black:
+        driver.get("http://상품_옵션검정색 주소(블랙 상의 url)”)
+        driver.implicitly_wait(10)
+        time.sleep(0.3)
+        장바구니 
+        driver.find_element_by_class_name('btn_15_f2(블랙 상의)’).click()
+
+    흰색 선택
+    else:
+         driver.get("http://상품_옵션검정색 주소(흰색 상의 url)”)
+        driver.implicitly_wait(10)
+        장바구니 버튼 클래스 이름으로 찾아서 클릭
+        driver.find_element_by_class_name('btn_15_f2(흔색 상의)’).click()
+
+
+장바구니 비우기 선택삭제/전체삭제
+def basket_clean():
+    driver.get("http://하이버 장바구니 페이지 주소")
+    driver.implicitly_wait(10)
+    driver.find_element_by_xpath("장바구니 비우기 버튼 xpath 참고”).click()
+    driver.implicitly_wait(10)
+    try:
+        driver.switch_to.alert.accept()
+    except:
+        "good"
+
+
+start()
+
+try:
+    basket_clean()
+except:
+    "good"
+time.sleep(0.5)
+
+
+full_set("b")
+print("검정 옵션을 패키지 상품을 장바구니에 담았습니다.")
+print("5초간 대기")
+time.sleep(5)
+print("장바구니를 비우겠습니다.")
+basket_clean()
+print("완료, 5초간 대기")
+time.sleep(0.5)
+time.sleep(5)
+
+full_set("w")
+print("흰색 옵션을 패키지 상품을 장바구니에 담았습니다.")
+print("5초간 대기")
+time.sleep(5)
+print("장바구니를 비우겠습니다.")
+basket_clean()
+print("완료")
