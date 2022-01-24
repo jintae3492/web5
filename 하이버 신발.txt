@@ -24,7 +24,7 @@ driver = webdriver.Chrome(os.getcwd() + "/chromedriver")
                     price = item_infos[i].get_attribute("data-bh-content-meta3")
                     item_url = item_infos[i].get_attribute("href")
                     img_url = item_images[i].get_attribute("data-original")
-                    shop = "musinsa"
+                    shop = "HIVER"
 
                     new_user = Item(
                         title = title,
