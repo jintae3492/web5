@@ -39,7 +39,7 @@ driver = webdriver.Chrome(os.getcwd() + "/chromedriver")
                     db.session.commit()
 
                     # Save Image
-                    urllib.request.urlretrieve(img_url, "images/musinsa/m" + str(cnt) + ".jpg")
+                    urllib.request.urlretrieve(img_url, "images/HIVER/m" + str(cnt) + ".jpg")
                     cnt += 1
 
                 except Exception as e:
